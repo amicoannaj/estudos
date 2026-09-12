@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nexo Store — tecnologia para o seu ritmo. Loja virtual demonstrativa.">
+  <title>Nexo Store — Tecnologia para o seu ritmo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23091122'/%3E%3Cpath d='M18 44V20h7l14 14V20h7v24h-7L25 30v14z' fill='%234f7cff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement">Frete grátis acima de R$ 299 <span>•</span> Compra 100% demonstrativa</div>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Nexo Store, página inicial"><span class="brand-mark">N</span>NEXO</a>
+    <nav aria-label="Navegação principal">
+      <a href="#produtos">Produtos</a><a href="#beneficios">Benefícios</a><a href="#contato">Contato</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Pesquisar produtos" aria-expanded="false">⌕</button>
+      <button class="cart-btn" id="cartOpen" aria-label="Abrir carrinho">Carrinho <span id="cartCount">0</span></button>
+    </div>
+    <div class="search-bar" id="searchBar">
+      <label for="searchInput">O que você procura?</label>
+      <input id="searchInput" type="search" placeholder="Ex.: fone, teclado, caixa de som">
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <img src="assets/hero-tech.png" alt="Fone de ouvido, teclado e caixa de som em um estúdio azul" fetchpriority="high">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Semana Nexo</p>
+        <h1>Tecnologia que acompanha seu ritmo.</h1>
+        <p>Produtos essenciais, design inteligente e preços que fazem sentido.</p>
+        <a class="primary-btn" href="#produtos">Explorar produtos <span>→</span></a>
+      </div>
+      <div class="hero-note"><strong>12x</strong><span>sem juros<br>no cartão</span></div>
+    </section>
+
+    <section class="benefits" id="beneficios" aria-label="Benefícios da loja">
+      <article><span>↗</span><div><strong>Envio rápido</strong><small>Para todo o Brasil</small></div></article>
+      <article><span>◇</span><div><strong>Compra segura</strong><small>Ambiente protegido</small></div></article>
+      <article><span>↺</span><div><strong>Troca fácil</strong><small>Até 30 dias</small></div></article>
+      <article><span>◉</span><div><strong>Suporte humano</strong><small>Quando você precisar</small></div></article>
+    </section>
+
+    <section class="catalog" id="produtos">
+      <div class="section-heading">
+        <div><p class="eyebrow">Escolhas da semana</p><h2>Mais vendidos</h2></div>
+        <div class="filters" role="group" aria-label="Filtrar produtos">
+          <button class="filter active" data-filter="all">Todos</button>
+          <button class="filter" data-filter="audio">Áudio</button>
+          <button class="filter" data-filter="setup">Setup</button>
+        </div>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <p class="empty" id="emptyState" hidden>Nenhum produto encontrado.</p>
+    </section>
+
+    <section class="newsletter" id="contato">
+      <div><p class="eyebrow">Fique por dentro</p><h2>Novidades sem enrolação.</h2><p>Ofertas selecionadas e lançamentos no seu e-mail.</p></div>
+      <form id="newsletterForm"><label class="sr-only" for="email">Seu melhor e-mail</label><input id="email" type="email" placeholder="Seu melhor e-mail" required><button type="submit">Quero receber</button></form>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#inicio"><span class="brand-mark">N</span>NEXO</a><p>Projeto demonstrativo — nenhum pagamento real será processado.</p><p>© 2026 Nexo Store</p></footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-labelledby="cartTitle">
+    <div class="drawer-head"><div><p class="eyebrow">Seu pedido</p><h2 id="cartTitle">Carrinho</h2></div><button id="cartClose" class="icon-btn" aria-label="Fechar carrinho">×</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-empty" id="cartEmpty"><span>□</span><strong>Seu carrinho está vazio</strong><p>Adicione um produto para começar.</p></div>
+    <div class="cart-footer" id="cartFooter" hidden><div class="total"><span>Total</span><strong id="cartTotal">R$ 0,00</strong></div><button class="checkout-btn" id="checkoutBtn">Finalizar compra</button><small>Checkout demonstrativo • nenhum valor será cobrado</small></div>
+  </aside>
+
+  <dialog id="checkoutDialog">
+    <button class="dialog-close" id="dialogClose" aria-label="Fechar">×</button>
+    <div class="success-icon">✓</div><p class="eyebrow">Pedido simulado</p><h2>Tudo certo!</h2><p>O fluxo de checkout funcionou. Esta é uma loja de teste e nenhum pagamento foi realizado.</p><button class="primary-btn" id="finishBtn">Continuar comprando</button>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
