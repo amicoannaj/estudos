@@ -1,7 +1,5 @@
 {
   "buildCommand": "echo 'Static site - no build needed'",
   "outputDirectory": "dist",
-  "installCommand": "echo 'No dependencies to install'",
-  "public": true,
-  "env": {}
+  "installCommand": "echo 'No dependencies to install'"
 }
